@@ -29,8 +29,8 @@ class MyHomePage extends StatelessWidget {
             children: [
               TextButton(
                 child: Text(
-                  'Start',
-                  style: TextStyle(height: 2, fontSize: 40),
+                  'Start task by main isolate',
+                  style: TextStyle(height: 2, fontSize: 30),
                 ),
                 onPressed: () async {
                   heavyTask(1000000000);
@@ -38,8 +38,8 @@ class MyHomePage extends StatelessWidget {
               ),
               TextButton(
                 child: Text(
-                  'Start with compute',
-                  style: TextStyle(height: 2, fontSize: 40),
+                  'Start task w/ new isolate',
+                  style: TextStyle(height: 2, fontSize: 30),
                 ),
                 onPressed: () async {
                   await compute(heavyTask, 1000000000);
