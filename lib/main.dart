@@ -20,17 +20,27 @@ class MyHomePage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CircularProgressIndicator(),
+          SizedBox(
+            child: CircularProgressIndicator(),
+            height: 200.0,
+            width: 200.0,
+          ),
           Column(
             children: [
               TextButton(
-                child: Text('Start'),
+                child: Text(
+                  'Start',
+                  style: TextStyle(height: 2, fontSize: 40),
+                ),
                 onPressed: () async {
                   heavyTask(1000000000);
                 },
               ),
               TextButton(
-                child: Text('Start with compute'),
+                child: Text(
+                  'Start with compute',
+                  style: TextStyle(height: 2, fontSize: 40),
+                ),
                 onPressed: () async {
                   await compute(heavyTask, 1000000000);
                 },
