@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  // static const number = 10 ^ 8;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -33,7 +36,11 @@ class MyHomePage extends StatelessWidget {
                   style: TextStyle(height: 2, fontSize: 30),
                 ),
                 onPressed: () async {
-                  heavyTask(1000000000);
+                  final _stopwatch = Stopwatch()..start();
+                  _heavyTask(pow(10, 9).toInt());
+                  _stopwatch.stop();
+                  print(
+                      'elapsed total: ${_stopwatch.elapsedMilliseconds} msec');
                 },
               ),
               TextButton(
@@ -42,7 +49,11 @@ class MyHomePage extends StatelessWidget {
                   style: TextStyle(height: 2, fontSize: 30),
                 ),
                 onPressed: () async {
-                  await compute(heavyTask, 1000000000);
+                  final _stopwatch = Stopwatch()..start();
+                  await compute(_heavyTask, pow(10, 9).toInt());
+                  _stopwatch.stop();
+                  print(
+                      'elapsed total: ${_stopwatch.elapsedMilliseconds} msec');
                 },
               )
             ],
@@ -53,11 +64,11 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-void heavyTask(int val) {
-  final stopwatch = Stopwatch()..start();
+void _heavyTask(int val) {
+  final _stopwatch = Stopwatch()..start();
   for (int i = 0; i <= val; ++i) {
     if (i == val) print('Finished heavyTask!');
   }
-  stopwatch.stop();
-  print('elapsed: ${stopwatch.elapsedMilliseconds} msec');
+  _stopwatch.stop();
+  print('elapsed: ${_stopwatch.elapsedMilliseconds} msec');
 }
