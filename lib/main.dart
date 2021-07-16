@@ -9,31 +9,47 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: new ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Performance Measurement'),
+        ),
+        body: MyHomePage(),
+      ),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  // static const number = 10 ^ 8;
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SizedBox(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              strokeWidth: 18.0,
+            ),
             height: 200.0,
             width: 200.0,
           ),
           Column(
             children: [
-              TextButton(
-                child: Text(
-                  'Start task by main isolate',
-                  style: TextStyle(height: 2, fontSize: 30),
+              ElevatedButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Text(
+                    'Heavy Task',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blueGrey,
+                  onPrimary: Colors.white,
                 ),
                 onPressed: () async {
                   final _stopwatch = Stopwatch()..start();
@@ -43,10 +59,18 @@ class MyHomePage extends StatelessWidget {
                       'elapsed total: ${_stopwatch.elapsedMilliseconds} msec');
                 },
               ),
-              TextButton(
-                child: Text(
-                  'Start task w/ new isolate',
-                  style: TextStyle(height: 2, fontSize: 30),
+              SizedBox(height: 20),
+              ElevatedButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Text(
+                    'Heavy task\nw/ new isolate',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red[300],
+                  onPrimary: Colors.white,
                 ),
                 onPressed: () async {
                   final _stopwatch = Stopwatch()..start();
@@ -55,7 +79,7 @@ class MyHomePage extends StatelessWidget {
                   print(
                       'elapsed total: ${_stopwatch.elapsedMilliseconds} msec');
                 },
-              )
+              ),
             ],
           ),
         ],
