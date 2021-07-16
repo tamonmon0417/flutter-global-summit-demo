@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Performance Measurement'),
+          title: Text('Heavy Task App'),
         ),
         body: MyHomePage(),
       ),
